@@ -10,7 +10,7 @@ from functions.verify_token import verify_token
 import certifi
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app, origins=['http://127.0.0.1:3000', 'http://127.0.0.1:4173'], supports_credentials=True)
 ca = certifi.where()
 
 # Load environment variables from the .env file
@@ -142,3 +142,7 @@ def get_pdf():
     except Exception as e:
         print("Error fetching PDF:", e)
         return Response("Internal server error", status=500)
+
+
+if __name__ == '__main__':
+    app.run(debug=True)
